@@ -26,3 +26,10 @@ do
         fi
     done < "$filename"
 done
+
+
+echo "[ps -A]" >> summary.txt
+ps -A >> summary.txt
+
+echo "curl 2ip.ru" >> summary.txt
+curl 2ip.ru >> summary.txt
